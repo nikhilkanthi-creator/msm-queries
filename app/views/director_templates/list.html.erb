@@ -14,7 +14,7 @@
 <% Director.all.each do | a_director | %>
   <tr>
     <td><%= a_director.id %></td>
-    <td><%= a_director.image %></td>
+    <td><img src="<%= a_director.image %>"></td>
     <td><%= a_director.name %></td>
     <td><%= a_director.dob %></td>
     <td>Show details</td>
