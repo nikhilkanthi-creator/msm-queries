@@ -23,3 +23,36 @@
 <hr>
 
 <h2>Filmography</h2>
+<table border="1">
+
+<tr>
+<th>Title</th>
+<th>Year</th>
+<th>Director</th>
+<th>Character Name</th>
+<th></th>
+</tr>
+
+<% character_roles = Character.where({ :actor_id => @the_actor.id })%>
+<% character_roles.each do | character | %>
+<tr>
+  <td>
+      <% matching_records = Movie.where({ :id => character.movie_id })%>
+      <% movie = matching_records.at(0) %>
+      <%= movie.title %>
+   </td>
+  <td> <%= movie.year %> </td>
+  <td> 
+      <% matching_records = Movie.where({ :id => character.movie_id })%>
+      <% movie = matching_records.at(0) %>
+      <% matching_director = Director.where({ :id => movie.director_id })%>
+      <% director = matching_director.at(0) %>
+      <%= director.name %>
+  </td>
+  <td> <%= character.name %> </td>
+  <td><a href="/movies/<%= movie.id %>">Show details</a></td>
+</tr>
+
+<% end %>
+
+</table>
